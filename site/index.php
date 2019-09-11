@@ -1,3 +1,4 @@
+<?php session_start()?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,13 +9,29 @@
     <title>Site 1</title>
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        .button_exit{
+            margin-top: 9px;
+            border: none;
+            background: none;
+        }
+        .button_exit:hover{
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
     <div class="container">
-
         <div class="row">
-            <header class="col-md-12"></header>
+            <header class="col-md-12">
+                <?php
+                if(!isset($_SESSION['registered_user'])){
+                    include_once 'pages/function.php';
+                    include_once 'pages/log_in.php';
+                }
+                ?>
+            </header>
         </div>
         <div class="row">
             <nav class="col-md-12">
@@ -24,6 +41,7 @@
         </div>
         <div class="row">
             <section class="col-md-12">
+                <?php include_once 'pages/function.php'?>
                 <?php
                 if(isset($_GET['page'])){
                     $page=$_GET['page'];
